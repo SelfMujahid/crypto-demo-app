@@ -15,6 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # --------------------------
+      # Gradle Wrapper Jar Fix
+      # --------------------------
+      - name: Download gradle-wrapper.jar if missing
+        run: |
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            mkdir -p gradle/wrapper
+            wget https://services.gradle.org/distributions/gradle-7.2-bin.zip
+            unzip gradle-7.2-bin.zip 'gradle-7.2/gradle-wrapper.jar' -d .
+            mv gradle-7.2/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
+            rm -rf gradle-7.2 gradle-7.2-bin.zip
+          fi
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
