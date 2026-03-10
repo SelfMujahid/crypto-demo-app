@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: $0.00"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:id="@+id/balanceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balance: $1000 | BTC: 0.0000"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_below="@id/priceText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buy"
+        android:layout_below="@id/balanceText"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"/>
+
+    <Button
+        android:id="@+id/sellButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sell"
+        android:layout_below="@id/balanceText"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"/>
+
+</RelativeLayout>
