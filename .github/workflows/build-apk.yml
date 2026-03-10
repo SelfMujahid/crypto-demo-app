@@ -15,17 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Fix: Download gradle-wrapper.jar if missing
-      - name: Download gradle-wrapper.jar if missing
-        run: |
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            mkdir -p gradle/wrapper
-            wget https://services.gradle.org/distributions/gradle-7.2-bin.zip
-            unzip gradle-7.2-bin.zip
-            mv gradle-7.2/lib/gradle-wrapper.jar gradle/wrapper/
-            rm -rf gradle-7.2 gradle-7.2-bin.zip
-          fi
-
       - name: Make gradlew executable
         run: chmod +x gradlew
 
