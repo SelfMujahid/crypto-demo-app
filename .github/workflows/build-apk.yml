@@ -15,18 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --------------------------
-      # Gradle Wrapper Jar Fix
-      # --------------------------
+      # Fix: Download gradle-wrapper.jar if missing
       - name: Download gradle-wrapper.jar if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
             mkdir -p gradle/wrapper
             wget https://services.gradle.org/distributions/gradle-7.2-bin.zip
-            unzip gradle-7.2-bin.zip 'gradle-7.2/gradle-wrapper.jar' -d .
-            mv gradle-7.2/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
+            unzip gradle-7.2-bin.zip
+            mv gradle-7.2/lib/gradle-wrapper.jar gradle/wrapper/
             rm -rf gradle-7.2 gradle-7.2-bin.zip
           fi
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -41,6 +42,7 @@ jobs:
           wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O tools.zip
           unzip tools.zip
           mv cmdline-tools $HOME/android-sdk/cmdline-tools/latest
+          rm tools.zip
 
       - name: Accept SDK licenses
         run: |
@@ -51,9 +53,6 @@ jobs:
           export ANDROID_SDK_ROOT=$HOME/android-sdk
           export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
           sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
 
       - name: Build APK
         run: ./gradlew assembleDebug
