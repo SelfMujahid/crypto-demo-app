@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 
 import org.json.JSONObject;
 import java.io.InputStreamReader;
@@ -13,7 +13,7 @@ import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private TextView priceText, balanceText;
     private Button buyButton, sellButton;
