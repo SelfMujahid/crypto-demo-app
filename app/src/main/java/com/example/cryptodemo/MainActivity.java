@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        android.os.StrictMode.setThreadPolicy(
+        new android.os.StrictMode.ThreadPolicy.Builder().permitAll().build()
+);
         setContentView(R.layout.activity_main);
 
         priceText = findViewById(R.id.priceText);
